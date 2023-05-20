@@ -5,10 +5,10 @@ RUN python3 -m venv /opt/venv
 CMD ["mkdir", "app/web"]
 
 WORKDIR /app/web
-COPY ./app/web/ .
+COPY ./apps/web/ .
 
-RUN /opt/venv/bin/pip3 install pip3 --upgrade && \
-    /opt/venv/bin/pip3 install -r /app/web/requirements.txt && \
+RUN /opt/venv/bin/pip install pip --upgrade && \
+    /opt/venv/bin/pip install -r /app/web/requirements.txt && \
     chmod +x /app/web/scripts/entrypoint.sh && \
     chmod +x /app/web/scripts/createsuperuser.sh && \
     chmod +x /app/web/scripts/migrations.sh && \

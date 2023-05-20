@@ -10,6 +10,8 @@ packages = [{include = "tianjiewong_portfolio"}]
 python = "^3.11"
 django = ">=4.2.1"
 python-decouple = "^3.8"
+whitenoise = "^6.4.0"
+gunicorn = "^20.1.0"
 
 
 [build-system]
