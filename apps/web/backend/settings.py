@@ -15,17 +15,25 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import cloudinary
+from decouple import config
+
+cloudinary.config(
+    cloud_name=config("CLOUD_NAME", cast=str),
+    api_key=config("CLOUD_API_KEY", cast=str),
+    api_secret=config("CLOUD_API_SECRET", cast=str)
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$8*dlg_n1_e+)npv@4-nbkrj6cm5v$)83p#tn56t&7vq12p+@g'
+SECRET_KEY = config("DJANGO_SECRET_KEY", cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'custom_commands',
+
+    # new apps
+    'rest_framework',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +88,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config("POSTGRES_DB", cast=str),
+        'USER': config("POSTGRES_USER", cast=str),
+        'PASSWORD': config("POSTGRES_PASSWORD", cast=str),
+        'HOST': config("POSTGRES_HOST", cast=str),
+        'PORT': '5432'
     }
 }
 

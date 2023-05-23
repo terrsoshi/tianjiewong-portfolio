@@ -5,7 +5,7 @@
 *.pyc
 *.pyo
 
-# .gitignore file templates from GitHub
+# Copied from .gitignore file
 
 # Python 
 
