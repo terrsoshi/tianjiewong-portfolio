@@ -25,7 +25,7 @@ class SubjectAdmin(admin.ModelAdmin):
 
 @admin.register(Semester)
 class SemesterAdmin(admin.ModelAdmin):
-    list_display = ('number','start_date', 'end_date')
+    list_display = ('number', 'education', 'start_date', 'end_date')
 
 @admin.register(ContactForm)
 class ContactFormAdmin(admin.ModelAdmin):
