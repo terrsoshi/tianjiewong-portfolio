@@ -2,13 +2,17 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, Http404
 from .models import *
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, ListView, DetailView
 
-def index(request):
-    skills = Skill.objects.all()
-    return render(request, 'index.html', {
-        'skills': skills,
-    })
+class IndexView(TemplateView):
+    template_name = 'index.html'
+    extra_context = {'skills': Skill.objects.all()}
+
+class SkillsView(ListView):
+    model = Skill
+    context_object_name = "skills"
+    template_name = 'skills.html'
 
 def project(request, project_slug):
     return HttpResponse(f'<p>project view with slug {project_slug}</p>')
@@ -22,13 +26,11 @@ def experiences(request):
 def educations(request):
     return HttpResponse('<p>educations view</p>')
 
-def skill_detail(request, skill_id):
-    try:
-        skill = Skill.objects.get(id=skill_id)
-    except Skill.DoesNotExist:
-        raise Http404('Skill not found')
-    return render(request, 'skill_detail.html', {'skill': skill})
+class SkillDetailView(DetailView):
+    model = Skill
+    context_object_name = "skill"
+    template_name ='skill_detail.html'
 
-@login_required(login_url='/admin')
-def authorised(request):
-    return render(request, 'authorised.html', {})
+class AuthorisedView(LoginRequiredMixin, TemplateView):
+    template_name = 'authorised.html'
+    login_url = '/admin'

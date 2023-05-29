@@ -1,13 +1,13 @@
-version: '3.9'
+version: "3.9"
 
 services:
   db:
     container_name: db
-    image: postgres:latest
+    image: postgres:15.3
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
-      - 5432:5432
+      - 5433:5432
     env_file:
       - ./apps/web/.env
     healthcheck:
@@ -32,7 +32,6 @@ services:
       db:
         condition: service_healthy
 
-
   www:
     container_name: www
     build:
@@ -40,6 +39,7 @@ services:
       dockerfile: apps/docker/www/Dockerfile
     volumes:
       - node_modules:/app/www/node_modules
+      - ./apps/www:/app/www
     ports:
       - 3000:3000
 
@@ -64,7 +64,7 @@ services:
       db:
         condition: service_healthy
 
-volumes: 
+volumes:
   postgres_data:
   static:
   node_modules:
