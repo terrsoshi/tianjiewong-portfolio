@@ -10,17 +10,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Start minikube
+      - name: Start and Set up minikube
         id: minikube
         uses: medyagh/setup-minikube@latest
-        
-      - name: Setup minikube for Docker Compose
-        run: minikube start --driver=docker
+        with:
+          driver: docker
       
       - name: Build and start containers
         run: docker compose up --build -d
         
       - name: Stop and clean up containers
         run: |
-          docker-compose down
+          docker compose down
           minikube stop
