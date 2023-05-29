@@ -4,7 +4,7 @@ on:
   - pull_request
 jobs:
   job1:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     name: job1
     steps:
       - name: Checkout code
@@ -17,9 +17,9 @@ jobs:
           driver: docker
       
       - name: Build and start containers
-        run: docker compose up --build -d
+        run: docker-compose up --build -d
         
       - name: Stop and clean up containers
         run: |
-          docker compose down
+          docker-compose down
           minikube stop
