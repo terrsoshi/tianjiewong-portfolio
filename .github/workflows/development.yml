@@ -1,0 +1,26 @@
+name: CI
+on:
+  - push
+  - pull_request
+jobs:
+  job1:
+    runs-on: macOS-latest
+    name: job1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Start minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
+        
+      - name: Setup minikube for Docker Compose
+        run: minikube start --driver=docker
+      
+      - name: Build and start containers
+        run: docker compose up --build -d
+        
+      - name: Stop and clean up containers
+        run: |
+          docker-compose down
+          minikube stop
