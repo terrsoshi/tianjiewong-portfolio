@@ -1,0 +1,25 @@
+name: CI
+on:
+  - push
+  - pull_request
+jobs:
+  job_test_containers_integration:
+    runs-on: ubuntu-latest
+    name: job1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start and Set up minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
+        with:
+          driver: docker
+
+      - name: Build and start containers
+        run: docker-compose up -f docker-compose-sample.yaml --build -d
+
+      - name: Stop and clean up containers
+        run: |
+          docker-compose down
+          minikube stop
