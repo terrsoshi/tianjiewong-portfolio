@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: db
+    image: postgres:15.3
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5433:5432
+    env_file:
+      - ./apps/web/.env-sample
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: apps/docker/web/Dockerfile
+    volumes:
+      - static:/app/web/static
+    ports:
+      - 8000:8000
+    env_file:
+      - ./apps/web/.env-sample
+    depends_on:
+      db:
+        condition: service_healthy
+
+  www:
+    container_name: www
+    build:
+      context: .
+      dockerfile: apps/docker/www/Dockerfile
+    volumes:
+      - node_modules:/app/www/node_modules
+      - ./apps/www:/app/www
+    ports:
+      - 3000:3000
+
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: .
+  #     dockerfile: apps/docker/nginx/Dockerfile
+  #   volumes:
+  #     - static:/app/web/static
+  #   ports:
+  #     - 80:80
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    env_file:
+      - ./apps/web/.env-sample
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  static:
+  node_modules:
