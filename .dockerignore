@@ -4,8 +4,9 @@
 .DS_Store
 *.pyc
 *.pyo
+db_backups/
 
-# .gitignore file templates from GitHub
+# Copied from .gitignore file
 
 # Python 
 
