@@ -49,11 +49,12 @@ class Skill(models.Model):
     name = models.CharField(max_length=200)
     CATEGORY_CHOICES = [('S', 'Tool'), ('L', 'Language'), ('T', 'Technology')]
     category = models.CharField(max_length=1, choices=CATEGORY_CHOICES)
+    priority = models.IntegerField(default=4, blank=True)
     logo = CloudinaryField("Image", overwrite=True, format="jpg", blank=True)
     link = models.URLField(blank=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['category', 'priority', 'id']
 
     def __str__(self):
         return self.name
@@ -130,7 +131,7 @@ class Subject(models.Model):
         'Semester', on_delete=models.RESTRICT, null=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['semester', 'name']
 
     def __str__(self):
         return self.name
@@ -144,7 +145,7 @@ class Semester(models.Model):
     end_date = models.DateField()
 
     class Meta:
-        ordering = ['number', 'education']
+        ordering = ['education', 'number']
 
     def __str__(self):
         return f"Semester {str(self.number)} - {str(self.education)}"

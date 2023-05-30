@@ -4,6 +4,7 @@
 .DS_Store
 *.pyc
 *.pyo
+db_backups/
 
 # Copied from .gitignore file
 

@@ -1,3 +1,9 @@
 <html>
-  <p></p>
+  <body>
+    {% for skill in object_list %} {% if skill.logo %}
+    <a href="{{skill.link}}"><img src="{{skill.logo.url}}">{{skill.name}}</img></a>
+    {% else %}
+    <a href="{{skill.link}}">{{skill.name}}</a>
+    {% endif %} {% endfor %}
+  </body>
 </html>
