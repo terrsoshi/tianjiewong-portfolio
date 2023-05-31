@@ -14,4 +14,4 @@ echo "Trying to create superuser..."
 
 echo "Starting Django server..."
 APP_PORT=${PORT:-8000}
-/opt/venv/bin/gunicorn --worker-tmp-dir /dev/shm backend.wsgi:application --bind "0.0.0.0:${APP_PORT}"
+/opt/venv/bin/gunicorn --worker-tmp-dir /dev/shm backend.wsgi:application --bind "0.0.0.0:${APP_PORT}" --reload

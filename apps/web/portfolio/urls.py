@@ -11,4 +11,5 @@ urlpatterns = [
     path('skills/<int:pk>/', views.SkillDetailView.as_view(), name='skill'),
     path('authorised/', views.AuthorisedView.as_view(), name='authorised'),
     path('skills/', views.SkillsView.as_view(), name='skills'),
+    path('secondskills/', views.SkillsView.as_view(), name='secondskills'),
 ]

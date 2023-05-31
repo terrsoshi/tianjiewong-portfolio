@@ -24,6 +24,7 @@ services:
       dockerfile: apps/docker/web/Dockerfile
     volumes:
       - static:/app/web/static
+      - ./apps/web:/app/web
     ports:
       - 8000:8000
     env_file:
@@ -39,6 +40,7 @@ services:
       dockerfile: apps/docker/www/Dockerfile
     volumes:
       - node_modules:/app/www/node_modules
+      # Uncomment when developing using docker for hot reloading:
       - ./apps/www:/app/www
     ports:
       - 3000:3000
