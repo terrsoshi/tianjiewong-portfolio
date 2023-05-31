@@ -9,4 +9,4 @@ RUN /opt/venv/bin/pip install pip --upgrade && \
     /opt/venv/bin/pip install -r /app/web/requirements.txt && \
     chmod +x /app/web/scripts/entrypoint.sh
 
-CMD ["/app/web/scripts/entrypoint.sh"]
+CMD ["sh","/app/web/scripts/entrypoint.sh"]

@@ -5,6 +5,7 @@
 *.pyc
 *.pyo
 db_backups/
+kubernetes/
 
 # .gitignore file templates from GitHub
 
