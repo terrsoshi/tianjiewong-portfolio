@@ -7,7 +7,7 @@ class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
         fields = "__all__"
-
+        
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
@@ -56,25 +56,31 @@ class ProjectSerializer(serializers.ModelSerializer):
             data['current'] = True
         return data
 
+
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
         fields = "__all__"
+    
+    skills = SkillSerializer(required=False, many=True)
 
-class EducationSerializer(serializers.ModelSerializer):
+class SemesterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Education
+        model = Semester
         fields = "__all__"
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = "__all__"
-
-class SemesterSerializer(serializers.ModelSerializer):
+    
+    semester = SemesterSerializer()
+class EducationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Semester
+        model = Education
         fields = "__all__"
+
+    subjects = SubjectSerializer(required=False, many=True)
 
 class ContactFormSerializer(serializers.ModelSerializer):
     class Meta:
