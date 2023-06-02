@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # new apps
     'rest_framework',
+    'django_filters',
     'portfolio',
 ]
 

@@ -29,7 +29,11 @@ class Project(models.Model):
         to_assign = slugify(self.title)
 
         if Project.objects.filter(slug=to_assign).exists():
-            to_assign += f"-{str(Project.objects.filter(slug=to_assign).count())}"
+            count = 1
+            to_assign = slugify(self.title) + f"-{count}"
+            while Project.objects.filter(slug=to_assign).exists():
+                count += 1
+                to_assign = slugify(self.title) + f"-{count}"
         self.slug = to_assign
 
         if self.end_date is not None:
