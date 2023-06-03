@@ -12,6 +12,8 @@ urlpatterns = [
     path('skills/<int:pk>/', views.SkillDetailView.as_view(), name='skill'),
     path('authorised/', views.AuthorisedView.as_view(), name='authorised'),
     path('skills/', views.SkillsView.as_view(), name='skills'),
+    # Login View
+    path('login/', api_views.LoginView.as_view(), name='login'),
     # RESTful APIs
     path('api/projects/', api_views.ProjectListAPIView.as_view(), name='project-list'),
     path('api/projects/create/', api_views.ProjectCreateAPIView.as_view(), name='project-create'),

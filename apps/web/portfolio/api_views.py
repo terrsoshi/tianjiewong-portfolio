@@ -1,18 +1,32 @@
 
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
+from django_filters.rest_framework import DjangoFilterBackend
+from django.contrib.auth import login
+
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.pagination import LimitOffsetPagination
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import response, status
+from rest_framework import response, status, views, permissions
 
 from .serializers import *
 from .models import *
+
+class LoginView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = LoginSerializer(data=self.request.data,
+            context={ 'request': self.request })
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return response.Response(None, status=status.HTTP_202_ACCEPTED)
 
 class LimitPagination(LimitOffsetPagination):
     default_limit = 5
     max_limit = 10
 
 class ProjectListAPIView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -58,6 +72,7 @@ class ProjectRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
         return response
 
 class SkillListAPIView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -67,6 +82,7 @@ class SkillListAPIView(ListAPIView):
     ordering = ('category', 'priority', 'id')
 
 class SkillRetrieveAPIView(GenericAPIView):
+    permission_classes = (permissions.AllowAny,)
     serializer_class = SkillSerializer
     
     def get(self, request, id):
@@ -76,6 +92,7 @@ class SkillRetrieveAPIView(GenericAPIView):
         return response.Response("Skill not found.", status=status.HTTP_404_NOT_FOUND)
 
 class ExperienceListAPIView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -86,6 +103,7 @@ class ExperienceListAPIView(ListAPIView):
     pagination_class = LimitPagination
 
 class EducationListAPIView(ListAPIView):
+    permission_classes = (permissions.AllowAny,)
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
