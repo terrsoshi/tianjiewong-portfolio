@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     # new apps
     'rest_framework',
     'django_filters',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     'portfolio',
 ]
 
@@ -62,6 +64,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES' : [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_SCHEMA_CLASS' : 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
 }
 
 MIDDLEWARE = [

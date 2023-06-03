@@ -17,6 +17,8 @@ markdown = "^3.4.3"
 django-filter = "^23.2"
 cloudinary = "^1.33.0"
 psycopg2-binary = "^2.9.6"
+drf-spectacular = "^0.26.2"
+drf-spectacular-sidecar = "^2023.6.1"
 
 
 [build-system]
