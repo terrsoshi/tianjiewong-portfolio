@@ -6,6 +6,7 @@
 *.pyo
 db_backups/
 kubernetes/
+.stfolder/
 
 # .gitignore file templates from GitHub
 
