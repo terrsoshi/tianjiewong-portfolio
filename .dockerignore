@@ -6,6 +6,7 @@
 *.pyo
 db_backups/
 kubernetes/
+.stfolder/
 
 # Copied from .gitignore file
 
