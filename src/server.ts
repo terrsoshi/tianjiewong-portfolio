@@ -1,12 +1,12 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
-import cors from "cors";
 
 dotenv.config();
+const { SERVER_PORT = 8000 } = process.env;
+
 const app: Express = express();
 app.use(cors());
-
-const { SERVER_PORT = 8000 } = process.env;
 
 app.get("/", (req: Request, res: Response) => {
   res.json("Hello World!");
