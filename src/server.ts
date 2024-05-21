@@ -1,11 +1,19 @@
 import cors from "cors";
 import dotenv from "dotenv";
+import { cleanEnv, str } from "envalid";
 import { MongoClient, Db } from "mongodb";
 import express, { Express, Request, Response } from "express";
 
 // Load and use environment variables from the .env file
 dotenv.config();
-const { SERVER_PORT = 8000, DB_URI = "", DB_NAME = "" } = process.env;
+
+// Validate environment variables using Envalid before accessing them
+const env = cleanEnv(process.env, {
+  SERVER_PORT: str({ default: "8000" }),
+  DB_URI: str(),
+  DB_NAME: str(),
+});
+const { SERVER_PORT, DB_URI, DB_NAME } = env;
 
 // Connect to MongoDB Database
 const mongoClient: MongoClient = new MongoClient(DB_URI);
