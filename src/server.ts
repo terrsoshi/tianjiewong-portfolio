@@ -5,7 +5,7 @@ import express, { Express, Request, Response } from "express";
 
 // Load and use environment variables from the .env file
 dotenv.config();
-const { SERVER_PORT = 8000, DB_URI = '', DB_NAME = "" } = process.env;
+const { SERVER_PORT = 8000, DB_URI = "", DB_NAME = "" } = process.env;
 
 // Connect to MongoDB Database
 const mongoClient: MongoClient = new MongoClient(DB_URI);
