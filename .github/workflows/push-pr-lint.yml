@@ -1,0 +1,19 @@
+name: push-pr-lint
+run-name: ${{ github.ref }} - triggered from ${{ github.event_name }} by @${{ github.actor }}
+on: [push, pull_request]
+jobs:
+  prettier-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Lint check all changed files using Prettier
+        uses: creyD/prettier_action@v4.3
+        with:
+          dry: True
+          prettier_options: . --check
+          only_changed: True
+      - run: echo "This job's status is ${{ job.status }}."
