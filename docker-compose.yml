@@ -1,0 +1,22 @@
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./docker/server/Dockerfile
+    env_file:
+      - path: ./.env
+        required: true
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    env_file:
+      - path: ./.env
+        required: true
+    ports:
+      - ${PORT}:${PORT}
