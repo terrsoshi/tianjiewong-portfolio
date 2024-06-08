@@ -9,4 +9,4 @@ RUN npm install
 ARG PORT
 EXPOSE ${PORT}
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

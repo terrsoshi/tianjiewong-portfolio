@@ -11,11 +11,12 @@ services:
       - ${SERVER_PORT}:${SERVER_PORT}
     develop:
       watch:
-        - action: sync
+        - action: sync+restart
           path: .
           target: /app
           ignore:
             - node_modules
+            - app
         - action: rebuild
           path: ./package.json
           target: /app/package.json

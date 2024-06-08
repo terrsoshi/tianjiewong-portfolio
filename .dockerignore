@@ -158,3 +158,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Extras from create-next-app
+*.pem
+.vercel
+next-env.d.ts
