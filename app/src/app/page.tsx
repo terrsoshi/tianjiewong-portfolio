@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
 export const fetchData = async () => {
