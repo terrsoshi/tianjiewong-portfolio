@@ -32,7 +32,7 @@ describe("fetchData()", () => {
     });
     const res = await fetchData();
     expect(mockedAxios.get).toHaveBeenCalled();
-    expect(res).toEqual(expected);
+    expect(res).toBe(expected);
   });
 
   // Test for handling error while fetching data
