@@ -1,11 +1,11 @@
 name: push-pr-lint
-run-name: ${{ github.ref }} - triggered from ${{ github.event_name }} by @${{ github.actor }}
+run-name: Lint Check - ${{ github.ref }} - triggered from ${{ github.event_name }} by @${{ github.actor }}
 on: [push, pull_request]
 jobs:
   prettier-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: Checkout repository code
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
