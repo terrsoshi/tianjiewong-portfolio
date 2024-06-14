@@ -2,14 +2,17 @@ import Image from "next/image";
 import { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
-export default async function Home() {
+export const fetchData = async () => {
   try {
     const res: AxiosResponse = await axios.get("http://server:8000");
-    console.log(res.data);
+    return res.data;
   } catch (err) {
-    console.error(err);
+    return err;
   }
+};
 
+export default async function Home() {
+  console.log(await fetchData());
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
