@@ -44,9 +44,4 @@ describe("fetchData()", () => {
     expect(mockedAxios.get).toHaveBeenCalled();
     expect(res).toEqual(expected);
   });
-
-  // Failing test to verify the push-pr-jest-tests GitHub Action workflow
-  test("should fail", () => {
-    expect(true).toBe(false);
-  });
 });
