@@ -1,12 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import axios from "axios";
-
 import Home, { fetchData } from "../page";
-
-// Mock the axios module
-jest.mock("axios");
-const mockedAxios = jest.mocked(axios);
 
 describe("Home", () => {
   // Before each test in this test suite
@@ -26,22 +20,26 @@ describe("fetchData()", () => {
   // Test for successful data fetching
   test("should fetch data", async () => {
     const expected = "Hello World!";
-    // Mock successful response from axios.get
-    mockedAxios.get.mockResolvedValue({
-      data: expected,
-    });
-    const res = await fetchData();
-    expect(mockedAxios.get).toHaveBeenCalled();
-    expect(res).toBe(expected);
+    // Mock successful response from fetch
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(expected),
+      }),
+    ) as jest.Mock;
+    await expect(fetchData()).resolves.toBe(expected);
+    expect(global.fetch).toHaveBeenCalled();
   });
 
   // Test for handling error while fetching data
   test("should handle error", async () => {
     const expected = new Error("Failed to fetch data.");
-    // Mock failing responses from axios.get
-    mockedAxios.get.mockRejectedValue(expected);
-    const res = await fetchData();
-    expect(mockedAxios.get).toHaveBeenCalled();
-    expect(res).toEqual(expected);
+    // Mock failing responses from fetch
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.reject(expected),
+      }),
+    ) as jest.Mock;
+    await expect(fetchData()).rejects.toBe(expected);
+    expect(global.fetch).toHaveBeenCalled();
   });
 });

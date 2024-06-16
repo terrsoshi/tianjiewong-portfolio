@@ -1,10 +1,9 @@
 import Image from "next/image";
-import axios, { AxiosResponse } from "axios";
 
 export const fetchData = async () => {
   try {
-    const res: AxiosResponse = await axios.get("http://server:8000");
-    return res.data;
+    const res = await fetch("http://server:8000");
+    return res.json();
   } catch (err) {
     return err;
   }
