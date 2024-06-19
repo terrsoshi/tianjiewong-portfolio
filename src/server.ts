@@ -1,8 +1,8 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import { cleanEnv, str } from "envalid";
-import { MongoClient, Db } from "mongodb";
 import express, { Express, Request, Response } from "express";
+import { Db, MongoClient } from "mongodb";
 
 // Load and use environment variables from the .env file
 dotenv.config();
