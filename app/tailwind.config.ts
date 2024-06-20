@@ -6,6 +6,13 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: [
+    "variant",
+    [
+      "@media (prefers-color-scheme: dark) { &:not(.light *) }", // If the user prefers dark mode, unless overridden by a .light class
+      "&:is(.dark *)", // If there is a .dark class present in any ancestor element
+    ],
+  ],
   theme: {
     extend: {
       backgroundImage: {
