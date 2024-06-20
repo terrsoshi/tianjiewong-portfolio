@@ -2,28 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    background-image: radial-gradient(
+        at 15% 100%,
+        hsla(259, 100%, 64%, 0.7) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 0% 33%,
+        hsla(325, 100%, 50%, 0.32) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 100% 100%,
+        hsla(183, 100%, 50%, 0.4) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 0% 100%,
+        hsla(22, 100%, 77%, 0.59) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 100% 66%,
+        hsla(240, 100%, 70%, 0.48) 0px,
+        transparent 50%
+      );
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
