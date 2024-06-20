@@ -13,6 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        purple: { custom: "hsla(259, 100%, 64%, 0.7)" },
+        blue: { custom: "hsla(240, 100%, 70%, 0.48)" },
+        pink: { custom: "hsla(325, 100%, 50%, 0.32)" },
+        teal: { custom: "hsla(183, 100%, 50%, 0.4)" },
+        orange: { custom: "hsla(22, 100%, 77%, 0.59)" },
+      },
     },
   },
   plugins: [],
