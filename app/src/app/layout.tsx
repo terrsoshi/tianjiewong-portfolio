@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 
+import Header from "@/components/Header";
+
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -27,7 +29,10 @@ export default function RootLayout({
       <body
         className={`${lato.className} bg-white bg-fixed text-black dark:bg-black dark:text-white`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
