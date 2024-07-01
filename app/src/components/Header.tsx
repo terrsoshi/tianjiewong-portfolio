@@ -19,7 +19,7 @@ import {
 import ThemeToggleButton from "./ThemeToggleButton";
 
 const menuItems = ["Home", "About Me", "Skills", "Projects", "Contact Me"];
-const menuItemsId = ["", "about", "skills", "projects", "about"];
+const menuItemsId = ["", "about", "skills", "projects", "contact"];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
