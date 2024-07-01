@@ -43,7 +43,7 @@ const Header = () => {
                 width="24"
                 height="24"
               />
-              <p className="font-semibold text-black antialiased dark:text-white">
+              <p className="font-semibold text-slate-700 antialiased dark:text-slate-300">
                 Tian Jie Wong
               </p>
             </Link>
