@@ -7,7 +7,7 @@ const DarkModeIcon = () => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
-      className="size-6 stroke-black"
+      className="size-6 stroke-slate-700"
     >
       <path
         strokeLinecap="round"
