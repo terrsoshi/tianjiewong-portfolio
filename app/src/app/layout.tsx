@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.className} bg-white bg-fixed text-black dark:bg-black dark:text-white`}
+        className={`${lato.className} bg-white bg-fixed text-slate-700 dark:bg-black dark:text-slate-300`}
       >
         <Providers>
           <Header />
