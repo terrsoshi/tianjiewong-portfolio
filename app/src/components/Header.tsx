@@ -18,8 +18,13 @@ import {
 
 import ThemeToggleButton from "./ThemeToggleButton";
 
-const menuItems = ["Home", "About Me", "Skills", "Projects", "Contact Me"];
-const menuItemsId = ["", "about", "skills", "projects", "contact"];
+const navItems: { label: string; hash: string }[] = [
+  { label: "Home", hash: "" },
+  { label: "About Me", hash: "about" },
+  { label: "Skills", hash: "skills" },
+  { label: "Projects", hash: "projects" },
+  { label: "Contact Me", hash: "contact" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,16 +65,16 @@ const Header = () => {
         </NavbarContent>
 
         <NavbarContent className="hidden gap-8 lg:flex" justify="center">
-          {menuItems.map((item, index) => {
-            const isActive = hash.replace("#", "") === `${menuItemsId[index]}`;
+          {navItems.map((item, index) => {
+            const isActive = hash.replace("#", "") === item.hash;
             return (
-              <NavbarItem key={`${item}-${index}`}>
+              <NavbarItem key={`${item.label}-${index}`}>
                 <Link
                   className={`antialiased ${isActive ? "text-blue-custom underline decoration-double underline-offset-[12px] hover:opacity-100 dark:text-indigo-400" : "text-current hover:opacity-50 dark:hover:text-white dark:hover:opacity-100"}`}
-                  href={`/#${menuItemsId[index]}`}
+                  href={`/#${item.hash}`}
                   size="lg"
                 >
-                  {item}
+                  {item.label}
                 </Link>
               </NavbarItem>
             );
@@ -81,16 +86,16 @@ const Header = () => {
         </NavbarContent>
 
         <NavbarMenu className="flex gap-2 dark:bg-black/50">
-          {menuItems.map((item, index) => {
-            const isActive = hash.replace("#", "") === menuItemsId[index];
+          {navItems.map((item, index) => {
+            const isActive = hash.replace("#", "") === item.hash;
             return (
-              <NavbarMenuItem key={`menu-${item}-${index}`}>
+              <NavbarMenuItem key={`menu-${item.label}-${index}`}>
                 <Link
                   className={`w-full rounded-xl px-4 py-3 antialiased hover:bg-zinc-200 hover:opacity-100 dark:hover:bg-zinc-700/70 ${isActive ? "text-blue-custom dark:text-indigo-400" : "text-current hover:text-black dark:hover:text-white"}`}
-                  href={`/#${menuItemsId[index]}`}
+                  href={`/#${item.hash}`}
                   size="lg"
                 >
-                  {item}
+                  {item.label}
                 </Link>
               </NavbarMenuItem>
             );
