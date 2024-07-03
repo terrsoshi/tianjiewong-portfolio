@@ -11,7 +11,7 @@ describe("Home", () => {
 
   // Simple Test for rendering the Home page correctly
   test("should render a paragraph", () => {
-    const paragraph = screen.getByText("Get started", { exact: false });
+    const paragraph = screen.getByText("Content", { exact: false });
     expect(paragraph).toBeInTheDocument();
   });
 });
