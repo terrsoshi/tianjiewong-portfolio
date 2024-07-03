@@ -40,7 +40,10 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar className="bg-transparent" onMenuOpenChange={setIsMenuOpen}>
+      <Navbar
+        className="bg-transparent lg:backdrop-filter-none"
+        onMenuOpenChange={setIsMenuOpen}
+      >
         <NavbarContent>
           <NavbarMenuToggle
             className="lg:hidden"
@@ -102,8 +105,6 @@ const Header = () => {
           })}
         </NavbarMenu>
       </Navbar>
-
-      <Divider className="mb-2 lg:hidden" />
     </header>
   );
 };
