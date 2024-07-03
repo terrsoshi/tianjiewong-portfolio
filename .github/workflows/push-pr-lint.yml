@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies
         working-directory: ./
         run: npm install
+      - name: Install app dependencies
+        working-directory: ./app
+        run: npm install
       - name: Lint check all changed files using Prettier
         uses: creyD/prettier_action@v4.3
         with:
