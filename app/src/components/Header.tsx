@@ -70,7 +70,7 @@ const Header = () => {
             return (
               <NavbarItem key={`${item.label}-${index}`}>
                 <Link
-                  className={`antialiased ${isActive ? "text-blue-custom underline decoration-double underline-offset-[12px] hover:opacity-100 dark:text-indigo-400" : "text-current hover:opacity-50 dark:hover:text-white dark:hover:opacity-100"}`}
+                  className={`antialiased ${isActive ? "text-blue-custom underline decoration-double underline-offset-[12px] hover:opacity-100 dark:text-indigo-400" : "navItem-slide-in text-current hover:opacity-50 motion-reduce:after:transition-none dark:hover:text-white dark:hover:opacity-100"}`}
                   href={`/#${item.hash}`}
                   size="lg"
                 >
