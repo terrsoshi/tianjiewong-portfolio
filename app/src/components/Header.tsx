@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 
@@ -23,6 +23,15 @@ const menuItemsId = ["", "about", "skills", "projects", "contact"];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hash, setHash] = useState("-");
+  useEffect(() => {
+    setHash(window.location.hash);
+    const handleHashChange = () => {
+      setHash(window.location.hash);
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <header>
@@ -52,10 +61,11 @@ const Header = () => {
 
         <NavbarContent className="hidden gap-8 lg:flex" justify="center">
           {menuItems.map((item, index) => {
+            const isActive = hash.replace("#", "") === `${menuItemsId[index]}`;
             return (
               <NavbarItem key={`${item}-${index}`}>
                 <Link
-                  className="text-current antialiased hover:opacity-50 active:underline active:underline-offset-4 dark:hover:text-white dark:hover:opacity-100"
+                  className={`antialiased ${isActive ? "text-blue-custom underline decoration-double underline-offset-[12px] hover:opacity-100 dark:text-indigo-400" : "text-current hover:opacity-50 dark:hover:text-white dark:hover:opacity-100"}`}
                   href={`/#${menuItemsId[index]}`}
                   size="lg"
                 >
@@ -72,10 +82,11 @@ const Header = () => {
 
         <NavbarMenu className="flex gap-2 dark:bg-black/50">
           {menuItems.map((item, index) => {
+            const isActive = hash.replace("#", "") === menuItemsId[index];
             return (
               <NavbarMenuItem key={`menu-${item}-${index}`}>
                 <Link
-                  className="w-full rounded-xl px-4 py-3 text-current antialiased hover:bg-zinc-200 hover:text-black hover:opacity-100 dark:hover:bg-zinc-700/70 dark:hover:text-white"
+                  className={`w-full rounded-xl px-4 py-3 antialiased hover:bg-zinc-200 hover:opacity-100 dark:hover:bg-zinc-700/70 ${isActive ? "text-blue-custom dark:text-indigo-400" : "text-current hover:text-black dark:hover:text-white"}`}
                   href={`/#${menuItemsId[index]}`}
                   size="lg"
                 >
